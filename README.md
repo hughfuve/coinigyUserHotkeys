@@ -6,15 +6,24 @@ Derived from Binny V A's work by Hugh Fuve
 License : MIT
 
 Step 1: Install Chrome
+
 Step 2: Install CJS for Chrome Extension
+
   Requires CJS for Chrome.
   https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija?hl=en
+
 Step 3: Refresh Coinigy
+
 Step 4: An icon with "CJS" will appear on Chrome in the top right corner, click the icon.
+
 Step 5: Enable CJS for coinigy.
+
 Step 6: Copy and paste the coinigyUserHotkeys.js code into the area provided by CJS.. or save the file so that you can reference it via an include.
+
 Step 7: Refresh Coinigy
+
 Step 8: Hotkeys are enabled, and you can add any code you like to the site.
+
 Step 9: Share with the community, thanks for your involvement!
 
 

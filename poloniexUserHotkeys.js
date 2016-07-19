@@ -13,8 +13,8 @@ https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfcio
 Version 1.0
 Derived from Binny V A's work by Hugh Fuve
 License : MIT
-*/
 
+*/
 
 /************************************************************************************************
  * http://www.openjs.com/scripts/events/keyboard_shortcuts/
@@ -371,7 +371,7 @@ Ctrl+Shift+6 does a fib/golden ratio level sell, and sets to available stock/1.6
 shortcut.add("Ctrl+Shift+6",
 function() {
  primary_trade_balance = parseFloat($("#secondaryBalance").html()).toFixed(10);
- primary_trade_code = $(".secondaryCurrency").html().toFixed(10);
+ primary_trade_code = parseFloat($(".secondaryCurrency").html()).toFixed(10);
  currentBid = parseFloat($("#highestBid").html()).toFixed(10);
  
  
@@ -381,8 +381,43 @@ function() {
  
  $("#sellAmount").val(primary_trade_balance/1.66)
  $("#sellRate").val(sellRate*1.66) 
- $("#sellTotal").val((sellRate primary_trade_balance)
+ $("#sellTotal").val(sellRate * primary_trade_balance)
  
+},
+{ 'type':'keydown', 'propagate':true, 'target':document}
+); 
+
+/*********************************
+Kills the alerts using the ESC key 
+**********************************/
+
+shortcut.add("Esc",
+function() {
+ hideAlert();
+},
+{ 'type':'keydown', 'propagate':true, 'target':document}
+); 
+
+
+/****************************** 
+  Binds a key to a specific DIV in this case sets enter on the OK button of sell
+
+$('body').on('keypress', '#alertDivOk', function(args) {
+    if (args.keyCode == 13) {
+        hideAlert()
+        return false;
+    }
+});
+
+*/
+
+/****************
+Exposes the current class and ID that has focus , handy for finding the names of the objects you want to change
+****************/
+shortcut.add("Ctrl+Shift+9",
+function() {
+    console.log("id:" + $("*:focus").attr("id") + " Class:" + $("*:focus").attr("class")    )
+    //hideAlert();    
 },
 { 'type':'keydown', 'propagate':true, 'target':document}
 ); 

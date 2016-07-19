@@ -1,16 +1,12 @@
 /*
 CUSTOM USER HOTKEYS FOR COINIGY
-
 This example ..turns CTRL 1,2,3,4,6,7 into quick sets for the sell prices..
-
 CTRL + 1 resets to base prices
 CTRL+  2 sets to half the available stock , then doubles the sell price .. successive hits doubles the sell price again and again.
 CTRL+  3 sets to half the available stock , then triples the sell price .. successive hits triple the sell price again and again.
 CTRL+  4 sets to half the available stock , then quads the sell price .. successive hits quad the sell price again and again.
-
 CTRL+  6 does a fib/golden ratio level sell, and sets to available stock/1.66 and then sets the sell price to price *1.66, successive hits raise the price by golden ratio *1.66
 CTRL+  7 sets to available stock/2 then sets the sell price to price *1.75, why this value? I dont know just testing...
-
 Requires CJS for Chrome.
 https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija?hl=en
 Version 1.0
@@ -18,153 +14,6 @@ Derived from Binny V A's work by Hugh Fuve
 License : MIT
 */
 
-/***************************************************
-Add your Custom Hotkeys Below Here
-****************************************************/
-
-/****************************** 
-CTRL + 1 resets to base prices 
-*/
-
-shortcut.add("Ctrl+1",
-function() {
- primary_trade_balance = parseFloat($(".primary_trade_balance").html());
- primary_trade_code = $(".primary_trade_code").html();
- currentBid = parseFloat($(".currentBid").html());
- 
- sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
- sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
- sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
- 
- $("#sell_box1").val(sellbox1 = primary_trade_balance)
- $("#sell_box2").val(sellbox2 = currentBid) 
- $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
- 
- /* enable this comment  to debug
- alert("Amount: " + primary_trade_balance + "\n" +
-  primary_trade_code + " to sell: " + sellbox1 + "\n" +
-  "BTC price per " + primary_trade_code + ": " + sellbox2 + "\n" +
-  "BTC to recieve: " + sellbox3  );
- */ 
-
-},
-{ 'type':'keydown', 'propagate':true, 'target':document}
-); 
-
-/****************************** 
-CTRL+  2 sets to half the available stock , then doubles the sell price .. successive hits doubles the sell price again and again. 
-*/
-
-shortcut.add("Ctrl+2",
-function() {
- primary_trade_balance = parseFloat($(".primary_trade_balance").html());
- primary_trade_code = $(".primary_trade_code").html();
- currentBid = parseFloat($(".currentBid").html());
- 
- sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
- sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
- sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
- 
- $("#sell_box1").val(sellbox1 = primary_trade_balance/2)
- $("#sell_box2").val(sellbox2 = sellbox2*2) 
- $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
- 
-},
-{ 'type':'keydown', 'propagate':true, 'target':document}
-); 
-
-/******************************  
-CTRL+  3 sets to half the available stock , then triples the sell price .. successive hits triple the sell price again and again. 
-*/
-
-shortcut.add("Ctrl+3",
-function() {
- primary_trade_balance = parseFloat($(".primary_trade_balance").html());
- primary_trade_code = $(".primary_trade_code").html();
- currentBid = parseFloat($(".currentBid").html());
- 
- sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
- sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
- sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
- 
- $("#sell_box1").val(sellbox1 = primary_trade_balance/2)
- $("#sell_box2").val(sellbox2 = sellbox2*3) 
- $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
- 
-},
-{ 'type':'keydown', 'propagate':true, 'target':document}
-); 
-
-/******************************  
-CTRL+  4 sets to half the available stock , then quads the sell price .. successive hits quad the sell price again and again. 
-*/
-
-shortcut.add("Ctrl+4",
-function() {
- primary_trade_balance = parseFloat($(".primary_trade_balance").html());
- primary_trade_code = $(".primary_trade_code").html();
- currentBid = parseFloat($(".currentBid").html());
- 
- sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
- sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
- sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
- 
- $("#sell_box1").val(sellbox1 = primary_trade_balance/2)
- $("#sell_box2").val(sellbox2 = sellbox2*4) 
- $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
- 
-},
-{ 'type':'keydown', 'propagate':true, 'target':document}
-); 
-
-/****************************** 
-CTRL+  7 sets to available stock/2 then sets the sell price to price *1.75, why this value? I dont know just testing... 
-*******************************/
-shortcut.add("Ctrl+7",
-function() {
- primary_trade_balance = parseFloat($(".primary_trade_balance").html());
- primary_trade_code = $(".primary_trade_code").html();
- currentBid = parseFloat($(".currentBid").html());
- 
- sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
- sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
- sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
- 
- $("#sell_box1").val(sellbox1 = primary_trade_balance/2)
- $("#sell_box2").val(sellbox2 = sellbox2*1.75) 
- $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
- 
-},
-{ 'type':'keydown', 'propagate':true, 'target':document}
-); 
-
-/****************************** 
-CTRL+  6 does a fib/golden ratio level sell, and sets to available stock/1.66 and then sets the sell price to price *1.66, successive hits raise the price by golden ratio *1.66 
-*******************************/
-shortcut.add("Ctrl+6",
-function() {
- primary_trade_balance = parseFloat($(".primary_trade_balance").html());
- primary_trade_code = $(".primary_trade_code").html();
- currentBid = parseFloat($(".currentBid").html());
- 
- sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
- sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
- sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
- 
- $("#sell_box1").val(sellbox1 = primary_trade_balance/1.66)
- $("#sell_box2").val(sellbox2 = sellbox2*1.66) 
- $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
- 
-},
-{ 'type':'keydown', 'propagate':true, 'target':document}
-); 
-
-
-
-
-/****************************
-End of hotkeys
-****************************/
 
 
 /************************************************************************************************
@@ -390,3 +239,151 @@ shortcut = {
 		else ele['on'+type] = false;
 	}
 }
+
+
+/***************************************************
+Add your Custom Hotkeys Below Here
+****************************************************/
+
+/****************************** 
+CTRL + 1 resets to base prices 
+*/
+
+shortcut.add("Ctrl+Shift+1",
+function() {
+ primary_trade_balance = parseFloat($(".primary_trade_balance").html());
+ primary_trade_code = $(".primary_trade_code").html();
+ currentBid = parseFloat($(".currentBid").html());
+ 
+ sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
+ sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
+ sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
+ 
+ $("#sell_box1").val(sellbox1 = primary_trade_balance)
+ $("#sell_box2").val(sellbox2 = currentBid) 
+ $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
+ 
+ /* enable this comment  to debug
+ alert("Amount: " + primary_trade_balance + "\n" +
+  primary_trade_code + " to sell: " + sellbox1 + "\n" +
+  "BTC price per " + primary_trade_code + ": " + sellbox2 + "\n" +
+  "BTC to recieve: " + sellbox3  );
+ */ 
+
+},
+{ 'type':'keydown', 'propagate':true, 'target':document}
+); 
+
+/****************************** 
+Ctrl+Shift+2 sets to half the available stock , then doubles the sell price .. successive hits doubles the sell price again and again. 
+*/
+
+shortcut.add("Ctrl+Shift+2",
+function() {
+ primary_trade_balance = parseFloat($(".primary_trade_balance").html());
+ primary_trade_code = $(".primary_trade_code").html();
+ currentBid = parseFloat($(".currentBid").html());
+ 
+ sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
+ sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
+ sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
+ 
+ $("#sell_box1").val(sellbox1 = primary_trade_balance/2)
+ $("#sell_box2").val(sellbox2 = sellbox2*2) 
+ $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
+ 
+},
+{ 'type':'keydown', 'propagate':true, 'target':document}
+); 
+
+/******************************  
+CTRL + SHIFT +  3 sets to half the available stock , then triples the sell price .. successive hits triple the sell price again and again. 
+*/
+
+shortcut.add("Ctrl+Shift+3",
+function() {
+ primary_trade_balance = parseFloat($(".primary_trade_balance").html());
+ primary_trade_code = $(".primary_trade_code").html();
+ currentBid = parseFloat($(".currentBid").html());
+ 
+ sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
+ sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
+ sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
+ 
+ $("#sell_box1").val(sellbox1 = primary_trade_balance/2)
+ $("#sell_box2").val(sellbox2 = sellbox2*3) 
+ $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
+ 
+},
+{ 'type':'keydown', 'propagate':true, 'target':document}
+); 
+
+/******************************  
+Ctrl+Shift+4 sets to half the available stock , then quads the sell price .. successive hits quad the sell price again and again. 
+*/
+
+shortcut.add("Ctrl+Shift+4",
+function() {
+ primary_trade_balance = parseFloat($(".primary_trade_balance").html());
+ primary_trade_code = $(".primary_trade_code").html();
+ currentBid = parseFloat($(".currentBid").html());
+ 
+ sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
+ sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
+ sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
+ 
+ $("#sell_box1").val(sellbox1 = primary_trade_balance/2)
+ $("#sell_box2").val(sellbox2 = sellbox2*4) 
+ $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
+ 
+},
+{ 'type':'keydown', 'propagate':true, 'target':document}
+); 
+
+/****************************** 
+Ctrl+Shift+7 sets to available stock/2 then sets the sell price to price *1.75, why this value? I dont know just testing... 
+*******************************/
+shortcut.add("Ctrl+Shift+7",
+function() {
+ primary_trade_balance = parseFloat($(".primary_trade_balance").html());
+ primary_trade_code = $(".primary_trade_code").html();
+ currentBid = parseFloat($(".currentBid").html());
+ 
+ sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
+ sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
+ sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
+ 
+ $("#sell_box1").val(sellbox1 = primary_trade_balance/2)
+ $("#sell_box2").val(sellbox2 = sellbox2*1.75) 
+ $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
+ 
+},
+{ 'type':'keydown', 'propagate':true, 'target':document}
+); 
+
+/****************************** 
+Ctrl+Shift+6 does a fib/golden ratio level sell, and sets to available stock/1.66 and then sets the sell price to price *1.66, successive hits raise the price by golden ratio *1.66 
+*******************************/
+shortcut.add("Ctrl+Shift+6",
+function() {
+ primary_trade_balance = parseFloat($(".primary_trade_balance").html());
+ primary_trade_code = $(".primary_trade_code").html();
+ currentBid = parseFloat($(".currentBid").html());
+ 
+ sellbox1 = parseFloat($("#sell_box1").val()) ? parseFloat($("#sell_box1").val()) : 0;
+ sellbox2 = parseFloat($("#sell_box2").val()) ? parseFloat($("#sell_box2").val()) : 0;
+ sellbox3 = parseFloat($("#sell_box3").val()) ? parseFloat($("#sell_box3").val()) : 0;
+ 
+ $("#sell_box1").val(sellbox1 = primary_trade_balance/1.66)
+ $("#sell_box2").val(sellbox2 = sellbox2*1.66) 
+ $("#sell_box3").val(sellbox3 = sellbox2 * sellbox1)
+ 
+},
+{ 'type':'keydown', 'propagate':true, 'target':document}
+); 
+
+
+/****************************
+End of hotkeys
+****************************/
+

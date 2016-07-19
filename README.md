@@ -1,5 +1,6 @@
 # coinigyUserHotkeys
 This extends chrome to allow custom user hotkeys for Coinigy.com the amazing multi crypto exchange charting service.
+UPDATE: Just added a version for Poloniex as well see poloniexUserHotkeys.js
 
 Version 1.0
 Derived from Binny V A's work by Hugh Fuve

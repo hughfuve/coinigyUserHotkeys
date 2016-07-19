@@ -15,7 +15,7 @@ Requires CJS for Chrome.
 https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija?hl=en
 Version 1.0
 Derived from Binny V A's work by Hugh Fuve
-License : BSD
+License : MIT
 */
 
 /***************************************************

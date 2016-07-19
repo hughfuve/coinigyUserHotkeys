@@ -1,6 +1,5 @@
 # coinigyUserHotkeys
 This extends chrome to allow custom user hotkeys for Coinigy.com the amazing multi crypto exchange charting service.
-Thanks for support with my ref link  https://www.coinigy.com/?r=7b1c65ae
 
 Requires CJS for Chrome.
 https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfciodnhlhhgnaaelnpjljija?hl=en
@@ -21,3 +20,4 @@ CTRL+  4 sets to half the available stock , then quads the sell price .. success
 CTRL+  6 does a fib/golden ratio level sell, and sets to available stock/1.66 and then sets the sell price to price *1.66, successive hits raise the price by golden ratio *1.66
 CTRL+  7 sets to available stock/2 then sets the sell price to price *1.75, why this value? I dont know just testing...
 
+Thanks for supporting mevia my Coinigy my ref link  https://www.coinigy.com/?r=7b1c65ae

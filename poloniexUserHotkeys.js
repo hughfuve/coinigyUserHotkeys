@@ -1,12 +1,11 @@
 /*
 CUSTOM USER SELL HOTKEYS FOR Poloniex I also have one for Coinigy
-
 This example ..turns CTRL 1,2,3,4,6,7 into quick sets for the sell prices..
-CTRL + SHIFT + 1 resets to base prices
-CTRL + SHIFT + 2 sets to half the available stock , then doubles the sell price .. successive hits doubles the sell price again and again.
-CTRL + SHIFT + 3 sets to half the available stock , then triples the sell price .. successive hits triple the sell price again and again.
-CTRL + SHIFT + 4 sets to half the available stock , then quads the sell price .. successive hits quad the sell price again and again.
-CTRL + SHIFT + 6 does a fib/golden ratio level sell, and sets to available stock/1.66 and then sets the sell price to price *1.66, successive hits raise the price by golden ratio *1.66
+CTRL + 1 resets to base prices
+CTRL+  2 sets to half the available stock , then doubles the sell price .. successive hits doubles the sell price again and again.
+CTRL+  3 sets to half the available stock , then triples the sell price .. successive hits triple the sell price again and again.
+CTRL+  4 sets to half the available stock , then quads the sell price .. successive hits quad the sell price again and again.
+CTRL+  6 does a fib/golden ratio level sell, and sets to available stock/1.66 and then sets the sell price to price *1.66, successive hits raise the price by golden ratio *1.66
 CTRL+  7 sets to available stock/2 then sets the sell price to price *1.75, why this value? I dont know just testing...
 
 Requires CJS for Chrome.
@@ -14,10 +13,7 @@ https://chrome.google.com/webstore/detail/custom-javascript-for-web/poakhlngfcio
 Version 1.0
 Derived from Binny V A's work by Hugh Fuve
 License : MIT
-
-
 */
-
 
 
 /************************************************************************************************
@@ -259,13 +255,13 @@ function() {
  primary_trade_code = $(".secondaryCurrency").html();
  currentBid = parseFloat($("#highestBid").html());
  
- sellbox1 = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
- sellbox2 = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
- sellbox3 = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
+ sellRate = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
+ sellAmount = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
+ sellTotal = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
  
- $("#sellRate").val(sellbox1 = primary_trade_balance)
- $("#sellAmount").val(sellbox2 = currentBid) 
- $("#sellTotal").val(sellbox3 = sellbox2 * sellbox1)
+ $("#sellAmount").val(primary_trade_balance)
+ $("#sellRate").val(currentBid) 
+ $("#sellTotal").val(currentBid * primary_trade_balance)
  
 
 /* alert("Amount: " + primary_trade_balance + "\n" +
@@ -287,14 +283,14 @@ function() {
  primary_trade_balance = parseFloat($("#secondaryBalance").html());
  primary_trade_code = $(".secondaryCurrency").html();
  currentBid = parseFloat($("#highestBid").html());
+
+ sellRate = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
+ sellAmount = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
+ sellTotal = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
  
- sellbox1 = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
- sellbox2 = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
- sellbox3 = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
- 
- $("#sellRate").val(sellbox1 = primary_trade_balance/2)
- $("#sellAmount").val(sellbox2 = sellbox2*2) 
- $("#sellTotal").val(sellbox3 = sellbox2 * sellbox1)
+ $("#sellAmount").val(primary_trade_balance/2)
+ $("#sellRate").val(sellRate*2) 
+ $("#sellTotal").val(sellRate * primary_trade_balance)
  
  
 },
@@ -311,13 +307,14 @@ function() {
  primary_trade_code = $(".secondaryCurrency").html();
  currentBid = parseFloat($("#highestBid").html());
  
- sellbox1 = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
- sellbox2 = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
- sellbox3 = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
+ sellRate = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
+ sellAmount = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
+ sellTotal = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
  
- $("#sellRate").val(sellbox1 = primary_trade_balance/2)
- $("#sellAmount").val(sellbox2 = sellbox2*3) 
- $("#sellTotal").val(sellbox3 = sellbox2 * sellbox1)
+ $("#sellAmount").val(primary_trade_balance/2)
+ $("#sellRate").val(sellRate*3) 
+ $("#sellTotal").val((sellRate * 3) * (primary_trade_balance/2))
+
  
 },
 { 'type':'keydown', 'propagate':true, 'target':document}
@@ -333,13 +330,14 @@ function() {
  primary_trade_code = $(".secondaryCurrency").html();
  currentBid = parseFloat($("#highestBid").html());
  
- sellbox1 = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
- sellbox2 = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
- sellbox3 = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
  
- $("#sellRate").val(sellbox1 = primary_trade_balance/2)
- $("#sellAmount").val(sellbox2 = sellbox2*4) 
- $("#sellTotal").val(sellbox3 = sellbox2 * sellbox1)
+ sellRate = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
+ sellAmount = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
+ sellTotal = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
+ 
+ $("#sellAmount").val(primary_trade_balance/2)
+ $("#sellRate").val(sellRate*4) 
+ $("#sellTotal").val((sellRate * 4) * (primary_trade_balance/2))
  
 },
 { 'type':'keydown', 'propagate':true, 'target':document}
@@ -354,13 +352,14 @@ function() {
  primary_trade_code = $(".secondaryCurrency").html();
  currentBid = parseFloat($("#highestBid").html());
  
- sellbox1 = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
- sellbox2 = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
- sellbox3 = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
  
- $("#sellRate").val(sellbox1 = primary_trade_balance/2)
- $("#sellAmount").val(sellbox2 = sellbox2*1.75) 
- $("#sellTotal").val(sellbox3 = sellbox2 * sellbox1)
+ sellRate = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
+ sellAmount = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
+ sellTotal = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
+
+ $("#sellAmount").val(primary_trade_balance/2)
+ $("#sellRate").val(sellRate*1.75) 
+ $("#sellTotal").val((sellRate * 1.75) * (primary_trade_balance/2))
  
 },
 { 'type':'keydown', 'propagate':true, 'target':document}
@@ -371,17 +370,18 @@ Ctrl+Shift+6 does a fib/golden ratio level sell, and sets to available stock/1.6
 *******************************/
 shortcut.add("Ctrl+Shift+6",
 function() {
- primary_trade_balance = parseFloat($("#secondaryBalance").html());
- primary_trade_code = $(".secondaryCurrency").html();
- currentBid = parseFloat($("#highestBid").html());
+ primary_trade_balance = parseFloat($("#secondaryBalance").html()).toFixed(10);
+ primary_trade_code = $(".secondaryCurrency").html().toFixed(10);
+ currentBid = parseFloat($("#highestBid").html()).toFixed(10);
  
- sellbox1 = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()) : 0;
- sellbox2 = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()) : 0;
- sellbox3 = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()) : 0;
  
- $("#sellRate").val(sellbox1 = primary_trade_balance/1.66)
- $("#sellAmount").val(sellbox2 = sellbox2*1.66) 
- $("#sellTotal").val(sellbox3 = sellbox2 * sellbox1)
+ sellRate = parseFloat($("#sellRate").val()) ? parseFloat($("#sellRate").val()).toFixed(10) : 0;
+ sellAmount = parseFloat($("#sellAmount").val()) ? parseFloat($("#sellAmount").val()).toFixed(10) : 0;
+ sellTotal = parseFloat($("#sellTotal").val()) ? parseFloat($("#sellTotal").val()).toFixed(10) : 0;
+ 
+ $("#sellAmount").val(primary_trade_balance/1.66)
+ $("#sellRate").val(sellRate*1.66) 
+ $("#sellTotal").val((sellRate primary_trade_balance)
  
 },
 { 'type':'keydown', 'propagate':true, 'target':document}

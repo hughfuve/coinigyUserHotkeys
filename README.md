@@ -40,4 +40,5 @@ CTRL+  6 does a fib/golden ratio level sell, and sets to available stock/1.66 an
 CTRL+  7 sets to available stock/2 then sets the sell price to price *1.75, why this value? I dont know just testing...
 
 All support appreciated,  my Coinigy ref link  https://www.coinigy.com/?r=7b1c65ae
-Regards Plutonium
+
+Regards and see you in the chat room, Plutonium

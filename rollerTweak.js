@@ -12,6 +12,7 @@
 Updates:
  1 changed to use mouseUp instead of mouseDown
  2 fixed a precision problem for values over 1
+ 3 Auto updates the totals (BTC to RECEIVE field) for coinigy as you adjust prices and quantity by roller
 */
 
 
@@ -124,7 +125,49 @@ function handle(delta) {
         } else {
 		    tmpVal = parseFloat($(document.activeElement).val())+precision ? parseFloat($(document.activeElement).val())+precision : 0
         }
-        $(document.activeElement).val(Number(tmpVal).toFixed(8))
+
+        //COINIGY SELL FORM AUTO SET SELL PRICES BY ROLLER    
+        switch($("*:focus").attr("id")	){
+	    case "sell_box1":
+	        $("#sell_box1").val(Number(tmpVal).toFixed(8))
+	        $("#sell_box3").val(Number(tmpVal * $("#sell_box2").val()).toFixed(8)  )
+	   break;
+	    case "sell_box2":
+	        $("#sell_box2").val(Number(tmpVal).toFixed(8))
+	        $("#sell_box3").val(Number(tmpVal * $("#sell_box1").val()).toFixed(8)  )
+	   break;     
+	   case "sell_box3":
+	        $("#sell_box3").val(Number(tmpVal).toFixed(8))
+	        if($("#sell_box2").val()){
+	            $("#sell_box1").val(Number(tmpVal / $("#sell_box2").val() ).toFixed(8)  )
+	        }else{
+	            $("#sell_box1").val(0)
+	        }
+	   break;
+	   case "buy_box1":
+	        $("#buy_box1").val(Number(tmpVal).toFixed(8))
+	        $("#buy_box3").val(Number(tmpVal * $("#buy_box2").val()).toFixed(8)  )
+	   break;
+	    case "buy_box2":
+	        $("#buy_box2").val(Number(tmpVal).toFixed(8))
+	        $("#buy_box3").val(Number(tmpVal * $("#buy_box1").val()).toFixed(8)  )
+	   break;     
+	   case "buy_box3":
+	        $("#buy_box3").val(Number(tmpVal).toFixed(8))
+	        if($("#buy_box2").val()){
+	            $("#buy_box1").val(Number(tmpVal / $("#sell_box2").val() ).toFixed(8)  )
+	        }else{
+	            $("#buy_box1").val(0)
+	        }
+	   break;
+	    
+	    break;
+	    default:
+	        $(document.activeElement).val(Number(tmpVal).toFixed(8))
+	    break;
+        }
+        
+        
 }
 
 /** Event handler for mouse wheel event.

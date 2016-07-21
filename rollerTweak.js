@@ -104,7 +104,7 @@ function() {
                         } else{
                             intSize  = 1
                         }
-                        if(cursorPos<2){ //left of decimal place
+                        if(cursorPos<(intSize+1)){ //left of decimal place
                             digit = Math.pow(10,Math.abs((intSize-cursorPos)))
                         }else if(cursorPos>2){  //right of decimal place
                             digit = Math.pow(10,-(cursorPos - intSize - 1))

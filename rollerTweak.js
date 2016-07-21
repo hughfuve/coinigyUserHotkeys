@@ -60,13 +60,27 @@ function() {
  //$("#sell_box*").mouseup(function(event) {
     
     switch($("*:focus").attr("id")	){
-	    case "sell_box1":
+	
+	    // Activate Fields on Coinigy
+		case "sell_box1":
 	    case "sell_box2":
 	    case "sell_box3":
 	    case "buy_box1":
 	    case "buy_box2":
 	    case "buy_box3":
-
+		
+		// And for Poloniex		
+		case "sellRate":
+		case "sellAmount":
+		case "sellTotal":
+		case "buyRate":
+		case "buyAmount":
+		case "buyTotal":
+		case "stopLimitStopRate":
+		case "stopLimitRate":
+		case "stopLimitAmount":		 
+		case "stopLimitTotal":
+		
             switch (event.which) {
                 case 1:
                     var digit    = 0;
@@ -95,6 +109,7 @@ function() {
                         }                
                     }
                     precision = digit
+					console.log("id:" + $("*:focus").attr("id") + " Class:" + $("*:focus").attr("class")    )  ; 
                     console.log("event.which:" + event.which + " val:" + value  + " CRSR:" + cursorPos + " SZ:" + intSize + " DG:" + digit)	
                 break;
                 case 2:
@@ -109,9 +124,8 @@ function() {
             }
 	    break;
 	    default:
-	    //ignore it then.
-    	    console.log("id:" + $("*:focus").attr("id") + " Class:" + $("*:focus").attr("class")    )  ;  
-    
+	    //Show us which fields are being clicked on
+    	    console.log("id:" + $("*:focus").attr("id") + " Class:" + $("*:focus").attr("class")    )  ;      
 	    break;
     }
 }
@@ -161,7 +175,68 @@ function handle(delta) {
 	        }
 	   break;
 	    
+		
+		
+		
+		
+		case "sellRate":		
+	        $("#sellRate").val(Number(tmpVal).toFixed(8))
+	        $("#sellTotal").val(Number(tmpVal * $("#sellAmount").val()).toFixed(8)  )
 	    break;
+	    case "sellAmount":		
+	        $("#sellAmount").val(Number(tmpVal).toFixed(8))
+	        $("#sellTotal").val(Number(tmpVal * $("#sellRate").val()).toFixed(8)  )
+	    break;     
+	    case "sellTotal":			   
+	        $("#sellTotal").val(Number(tmpVal).toFixed(8))
+	        if($("#sellAmount").val()){
+	            $("#sellRate").val(Number(tmpVal / $("#sellAmount").val() ).toFixed(8)  )
+	        }else{
+	            $("#sellRate").val(0)
+	        }
+	    break;
+		
+	    case "buyRate":		
+	        $("#buyRate").val(Number(tmpVal).toFixed(8))
+	        $("#buyTotal").val(Number(tmpVal * $("#buyAmount").val()).toFixed(8)  )
+	    break;
+	    case "buyAmount":		
+	        $("#buyAmount").val(Number(tmpVal).toFixed(8))
+	        $("#buyTotal").val(Number(tmpVal * $("#buyRate").val()).toFixed(8)  )
+	    break;     
+	    case "buyTotal":			   
+	        $("#buyTotal").val(Number(tmpVal).toFixed(8))
+	        if($("#buyAmount").val()){
+	            $("#buyRate").val(Number(tmpVal / $("#buyAmount").val() ).toFixed(8)  )
+	        }else{
+	            $("#buyRate").val(0)
+	        }
+	    break;
+		
+		
+		
+		case "stopLimitStopRate":		
+	        $("#stopLimitRate").val(Number(tmpVal).toFixed(8))
+			$("#stopLimitStopRate").val(Number(tmpVal).toFixed(8))
+	        $("#stopLimitTotal").val(Number(tmpVal * $("#stopLimitAmount").val()).toFixed(8)  )
+	    break;
+		case "stopLimitRate":		
+	        $("#stopLimitRate").val(Number(tmpVal).toFixed(8))			
+	    break;		
+	    case "stopLimitAmount":		
+	        $("#stopLimitAmount").val(Number(tmpVal).toFixed(8))
+	        $("#stopLimitTotal").val(Number(tmpVal * $("#stopLimitRate").val()).toFixed(8)  )
+	    break;     
+	    case "stopLimitTotal":			   
+	        $("#stopLimitTotal").val(Number(tmpVal).toFixed(8))
+	        if($("#stopLimitAmount").val()){
+	            $("#stopLimitRate").val(Number(tmpVal / $("#stopLimitAmount").val() ).toFixed(8)  )
+	        }else{
+	            $("#stopLimitRate").val(0)
+	        }
+	    break;
+			
+	    
 	    default:
 	        $(document.activeElement).val(Number(tmpVal).toFixed(8))
 	    break;

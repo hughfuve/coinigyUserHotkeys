@@ -411,6 +411,7 @@ $('body').on('keypress', '#alertDivOk', function(args) {
 
 */
 
+
 /****************
 Exposes the current class and ID that has focus , handy for finding the names of the objects you want to change
 ****************/

@@ -1,6 +1,7 @@
 # coinigyUserHotkeys
 This extends chrome to allow custom user hotkeys for Coinigy.com the amazing multi crypto exchange charting service.
 UPDATE: Just added a version for Poloniex as well see poloniexUserHotkeys.js
+UPDATE: Added a rollerTweak.js .. copy and paste this in too if you want the mouse roller to increment / decrement pricing in buy/sell, see the comments in the code for USAGE
 
 Version 1.0
 Derived from Binny V A's work by Hugh Fuve
@@ -43,3 +44,4 @@ CTRL+  7 sets to available stock/2 then sets the sell price to price *1.75, why 
 All support appreciated,  my Coinigy ref link  https://www.coinigy.com/?r=7b1c65ae
 
 Regards and see you in the chat room, Plutonium
+

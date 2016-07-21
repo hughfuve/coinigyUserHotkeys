@@ -16,6 +16,7 @@ Updates:
  1 changed to use mouseUp instead of mouseDown
  2 fixed a precision problem for values over 1
  3 Auto updates the totals (BTC to RECEIVE field) for coinigy as you adjust prices and quantity by roller
+ 4 preserve default roller behaviour
 */
 
 
@@ -148,10 +149,12 @@ function handle(delta) {
 	    case "sell_box1":
 	        $("#sell_box1").val(Number(tmpVal).toFixed(8))
 	        $("#sell_box3").val(Number(tmpVal * $("#sell_box2").val()).toFixed(8)  )
+			return false;
 	   break;
 	    case "sell_box2":
 	        $("#sell_box2").val(Number(tmpVal).toFixed(8))
 	        $("#sell_box3").val(Number(tmpVal * $("#sell_box1").val()).toFixed(8)  )
+			return false;
 	   break;     
 	   case "sell_box3":
 	        $("#sell_box3").val(Number(tmpVal).toFixed(8))
@@ -160,14 +163,17 @@ function handle(delta) {
 	        }else{
 	            $("#sell_box1").val(0)
 	        }
+			return false;
 	   break;
 	   case "buy_box1":
 	        $("#buy_box1").val(Number(tmpVal).toFixed(8))
 	        $("#buy_box3").val(Number(tmpVal * $("#buy_box2").val()).toFixed(8)  )
+			return false;
 	   break;
 	    case "buy_box2":
 	        $("#buy_box2").val(Number(tmpVal).toFixed(8))
 	        $("#buy_box3").val(Number(tmpVal * $("#buy_box1").val()).toFixed(8)  )
+			return false;
 	   break;     
 	   case "buy_box3":
 	        $("#buy_box3").val(Number(tmpVal).toFixed(8))
@@ -176,6 +182,7 @@ function handle(delta) {
 	        }else{
 	            $("#buy_box1").val(0)
 	        }
+			return false;
 	   break;
 	    
 		
@@ -185,10 +192,12 @@ function handle(delta) {
 		case "sellRate":		
 	        $("#sellRate").val(Number(tmpVal).toFixed(8))
 	        $("#sellTotal").val(Number(tmpVal * $("#sellAmount").val()).toFixed(8)  )
+			return false;
 	    break;
 	    case "sellAmount":		
 	        $("#sellAmount").val(Number(tmpVal).toFixed(8))
 	        $("#sellTotal").val(Number(tmpVal * $("#sellRate").val()).toFixed(8)  )
+			return false;
 	    break;     
 	    case "sellTotal":			   
 	        $("#sellTotal").val(Number(tmpVal).toFixed(8))
@@ -197,15 +206,18 @@ function handle(delta) {
 	        }else{
 	            $("#sellRate").val(0)
 	        }
+			return false;
 	    break;
 		
 	    case "buyRate":		
 	        $("#buyRate").val(Number(tmpVal).toFixed(8))
 	        $("#buyTotal").val(Number(tmpVal * $("#buyAmount").val()).toFixed(8)  )
+			return false;
 	    break;
 	    case "buyAmount":		
 	        $("#buyAmount").val(Number(tmpVal).toFixed(8))
 	        $("#buyTotal").val(Number(tmpVal * $("#buyRate").val()).toFixed(8)  )
+			return false;
 	    break;     
 	    case "buyTotal":			   
 	        $("#buyTotal").val(Number(tmpVal).toFixed(8))
@@ -214,6 +226,7 @@ function handle(delta) {
 	        }else{
 	            $("#buyRate").val(0)
 	        }
+			return false;
 	    break;
 		
 		
@@ -222,13 +235,16 @@ function handle(delta) {
 	        $("#stopLimitRate").val(Number(tmpVal).toFixed(8))
 			$("#stopLimitStopRate").val(Number(tmpVal).toFixed(8))
 	        $("#stopLimitTotal").val(Number(tmpVal * $("#stopLimitAmount").val()).toFixed(8)  )
+			return false;
 	    break;
 		case "stopLimitRate":		
 	        $("#stopLimitRate").val(Number(tmpVal).toFixed(8))			
+			return false;
 	    break;		
 	    case "stopLimitAmount":		
 	        $("#stopLimitAmount").val(Number(tmpVal).toFixed(8))
 	        $("#stopLimitTotal").val(Number(tmpVal * $("#stopLimitRate").val()).toFixed(8)  )
+			return false;
 	    break;     
 	    case "stopLimitTotal":			   
 	        $("#stopLimitTotal").val(Number(tmpVal).toFixed(8))
@@ -237,15 +253,20 @@ function handle(delta) {
 	        }else{
 	            $("#stopLimitRate").val(0)
 	        }
+			return false;
 	    break;
 			
 	    
 	    default:
-	        $(document.activeElement).val(Number(tmpVal).toFixed(8))
+			var validData = parseFloat($(document.activeElement).val())+1 ? true : false
+	        if(validData){
+	            $(document.activeElement).val(Number(tmpVal).toFixed(8))
+	            return false;
+	        }
+			
 	    break;
         }
-        
-        
+        return true;        
 }
 
 /** Event handler for mouse wheel event.
@@ -272,15 +293,16 @@ function wheel(event){
          * Basically, delta is now positive if wheel was scrolled up,
          * and negative, if wheel was scrolled down.
          */
-        if (delta)
-                handle(delta);
-        /** Prevent default actions caused by mouse wheel.
-         * That might be ugly, but we handle scrolls somehow
-         * anyway, so don't bother here..
-         */
-        if (event.preventDefault)
-                event.preventDefault();
-	event.returnValue = false;
+		if (delta){
+                if(handle(delta)){
+                    event.returnValue = true;
+                }else{
+                    event.returnValue = false;
+                }
+        }else{
+            // Preserve default behaviour
+            event.returnValue = true;
+        }
 }
 
 /** Initialization code. 

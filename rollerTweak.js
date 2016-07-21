@@ -10,6 +10,7 @@
  3. Click on the value at the particular decimal you want to adjust by, to set the precision
  4. Or use the .(<) ,(>) keys to adjust the precision. 
  5. Will auto adjust totals for you.
+ 6. Same code will work for both Coinigy and Poloniex
 
 Updates:
  1 changed to use mouseUp instead of mouseDown

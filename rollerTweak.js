@@ -9,7 +9,9 @@
  3. double Click on the value at the particular decimal you want to adjust by, to set the precision
  4. Or use the .(<) ,(>) keys to adjust the precision. 
 
-Update: changed to use mouseUp instead of mouseDown
+Updates:
+ 1 changed to use mouseUp instead of mouseDown
+ 2 fixed a precision problem for values over 1
 */
 
 
@@ -84,7 +86,7 @@ function() {
                             intSize  = 1
                         }
                         if(cursorPos<2){ //left of decimal place
-                            digit = Math.pow(10,Math.abs((intSize-cursorPos-2)))
+                            digit = Math.pow(10,Math.abs((intSize-cursorPos)))
                         }else if(cursorPos>2){  //right of decimal place
                             digit = Math.pow(10,-(cursorPos - intSize - 1))
                         }else{  //change by 1 if on the  decimal

@@ -4,10 +4,12 @@
  
  This code causes the mouse wheel to try and +/- values by 0.00000001
  USAGE: 
- 1. Copy and paste this into the bottom of the CJS edit area. to append it to the existing script.
- 2. Mouse roller will +/- the buy/sell values by 1 satoshi.
- 3. double Click on the value at the particular decimal you want to adjust by, to set the precision
+ 1. Copy and paste this into the bottom of the CJS edit area IN ADDITION TO THE STANDARD COINIGY OR POLONIEX CODE. to append 
+ the mouse roller options it to the existing script.
+ 2. Mouse roller will +/- the buy/sell values by 1 satoshi by default
+ 3. Click on the value at the particular decimal you want to adjust by, to set the precision
  4. Or use the .(<) ,(>) keys to adjust the precision. 
+ 5. Will auto adjust totals for you.
 
 Updates:
  1 changed to use mouseUp instead of mouseDown

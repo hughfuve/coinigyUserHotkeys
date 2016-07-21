@@ -8,8 +8,9 @@
  2. Mouse roller will +/- the buy/sell values by 1 satoshi.
  3. double Click on the value at the particular decimal you want to adjust by, to set the precision
  4. Or use the .(<) ,(>) keys to adjust the precision. 
- 
- */
+
+Update: changed to use mouseUp instead of mouseDown
+*/
 
 
 /****************************** 
@@ -52,12 +53,8 @@ function() {
     }
 })(jQuery);
  
- function myMouseDown(event){
- //$("#sell_box*").mousedown(function(event) {
-    var digit    = 0;
-    var intSize  = 0;
-    var cursorPos= 0;
-    var  value   = 0;
+ function myMouseUp(event){
+ //$("#sell_box*").mouseup(function(event) {
     
     switch($("*:focus").attr("id")	){
 	    case "sell_box1":
@@ -69,21 +66,33 @@ function() {
 
             switch (event.which) {
                 case 1:
+                    var digit    = 0;
+                    var intSize  = 0;
+                    var cursorPos= 0;
+                    var value   = 0;
+    
                     //alert('Left Mouse button pressed.');
                     cursorPos = $(document.activeElement).getCursorPosition()
-                    value = parseFloat($(document.activeElement).val())
-                    if(value>1){
-                        intSize  = Math.floor(Math.log10( value ) ) + 1
-                    } else{
-                        intSize  = 1
+                    value = parseFloat($(document.activeElement).val()) ? parseFloat($(document.activeElement).val()) : 0
+                    fieldDefined = parseFloat($(document.activeElement).val()) ? true : false
+                    if(!fieldDefined){
+                        digit = 0.00000001
+                    }else{
+                        if(value>1){
+                            intSize  = Math.floor(Math.log10( value ) ) + 1
+                        } else{
+                            intSize  = 1
+                        }
+                        if(cursorPos<2){ //left of decimal place
+                            digit = Math.pow(10,Math.abs((intSize-cursorPos-2)))
+                        }else if(cursorPos>2){  //right of decimal place
+                            digit = Math.pow(10,-(cursorPos - intSize - 1))
+                        }else{  //change by 1 if on the  decimal
+                            digit = 1
+                        }                
                     }
-                    if(cursorPos<2){ //left of decimal place
-                        digit = Math.pow(10,Math.abs((intSize-cursorPos-1)))
-                    }else if(cursorPos>2){  //right of decimal place
-                        digit = Math.pow(10,-(cursorPos - intSize - 1))
-                    }                
-                
                     precision = digit
+                    console.log("event.which:" + event.which + " val:" + value  + " CRSR:" + cursorPos + " SZ:" + intSize + " DG:" + digit)	
                 break;
                 case 2:
                 //alert('Middle Mouse button pressed.');
@@ -95,12 +104,10 @@ function() {
                 //alert('You have a strange Mouse!');
                 break;
             }
-            console.log("event.which:" + event.which + " val:" + value  + " CRSR:" + cursorPos + " SZ:" + intSize + " DG:" + digit)	
-	      
 	    break;
 	    default:
 	    //ignore it then.
-	    console.log("id:" + $("*:focus").attr("id") + " Class:" + $("*:focus").attr("class")    )  ;  
+    	    console.log("id:" + $("*:focus").attr("id") + " Class:" + $("*:focus").attr("class")    )  ;  
     
 	    break;
     }
@@ -120,8 +127,14 @@ function handle(delta) {
 
 /** Event handler for mouse wheel event.
  */
+var debounce=0;
 function wheel(event){
         var delta = 0;
+        debounce++;
+	    //console.log("roller:" + Number(eventCount))
+	    if(debounce % 2 ){ //to slow the events.
+	        return;   
+	    }
         if (!event) /* For IE. */
                 event = window.event;
         if (event.wheelDelta) { /* IE/Opera. */
@@ -153,7 +166,9 @@ function wheel(event){
 if (window.addEventListener){
         /** DOMMouseScroll is for mozilla. */
         window.addEventListener('DOMMouseScroll', wheel, false);
-        window.addEventListener('mousedown', myMouseDown, false);
+        window.addEventListener('mouseup', myMouseUp, false);
 }
-/** IE/Opera. but this is chrome*/
+/** IE/Opera. but this is chrome */
 window.onmousewheel = document.onmousewheel = wheel;
+
+

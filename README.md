@@ -1,8 +1,7 @@
 # coinigyUserHotkeys
 This extends chrome to allow custom user hotkeys for Coinigy.com the amazing multi crypto exchange charting service.
 
-Need someone to make custom hotkey's and mods for you? Message me direct, or email at hughfuve@gmail.com 
-Pay with Bitcoin, custom work $100 per hour, something like this would cost about $500.
+I can be hired to make custom hotkey's and mods for you at hughfuve@gmail.com Pay with Bitcoin, custom work $100 per hour, something like this project took about 5 hours of testing and feedback.
 
 UPDATE: Just added a version for Poloniex as well see poloniexUserHotkeys.js
 UPDATE: Added a rollerTweak.js .. copy and paste this in too if you want the mouse roller to increment / decrement pricing in buy/sell, see the comments in the code for USAGE

@@ -17,6 +17,7 @@ Updates:
  2 fixed a precision problem for values over 1
  3 Auto updates the totals (BTC to RECEIVE field) for coinigy as you adjust prices and quantity by roller
  4 preserve default roller behaviour
+ 5 fixed: buy was calculating wrong values 
 */
 
 
@@ -165,20 +166,22 @@ function handle(delta) {
 	        }
 			return false;
 	   break;
+	   
+	   
 	   case "buy_box1":
 	        $("#buy_box1").val(Number(tmpVal).toFixed(8))
-	        $("#buy_box3").val(Number(tmpVal * $("#buy_box2").val()).toFixed(8)  )
+	        $("#buy_box3").val(Number($("#buy_box1").val() / $("#buy_box2").val()).toFixed(8)  )
 			return false;
 	   break;
 	    case "buy_box2":
 	        $("#buy_box2").val(Number(tmpVal).toFixed(8))
-	        $("#buy_box3").val(Number(tmpVal * $("#buy_box1").val()).toFixed(8)  )
+	        $("#buy_box3").val(Number($("#buy_box1").val()).toFixed(8) / tmpVal  )
 			return false;
 	   break;     
 	   case "buy_box3":
 	        $("#buy_box3").val(Number(tmpVal).toFixed(8))
 	        if($("#buy_box2").val()){
-	            $("#buy_box1").val(Number(tmpVal / $("#sell_box2").val() ).toFixed(8)  )
+	            $("#buy_box1").val(Number(tmpVal * $("#sell_box2").val() ).toFixed(8)  )
 	        }else{
 	            $("#buy_box1").val(0)
 	        }
@@ -315,5 +318,6 @@ if (window.addEventListener){
 }
 /** IE/Opera. but this is chrome */
 window.onmousewheel = document.onmousewheel = wheel;
+
 
 

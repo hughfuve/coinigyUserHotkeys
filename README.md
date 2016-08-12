@@ -37,12 +37,25 @@ CUSTOM USER HOTKEYS FOR COINIGY
 This example ..turns CTRL 1,2,3,4,6,7 into quick sets for the sell prices..
 
 CTRL + 1 resets to base prices
+
 CTRL+  2 sets to half the available stock , then doubles the sell price .. successive hits doubles the sell price again and again.
+
 CTRL+  3 sets to half the available stock , then triples the sell price .. successive hits triple the sell price again and again.
+
 CTRL+  4 sets to half the available stock , then quads the sell price .. successive hits quad the sell price again and again.
 
 CTRL+  6 does a fib/golden ratio level sell, and sets to available stock/1.66 and then sets the sell price to price *1.66, successive hits raise the price by golden ratio *1.66
+
 CTRL+  7 sets to available stock/2 then sets the sell price to price *1.75, why this value? I dont know just testing...
+
+ESC: Can close the feedback dialogs, and allow you to enter another value. (works better on poloniex direct)
+
+Enter: can allow you to set the order, this means you can do all your buying and selling from the keyboard. (works better on poloniex direct)
+
+IF MOUSEROLLER mods included.
+Mouseroller Up increases and decreases digits in the buy and sell fields. Click on the particular digit to select the precision, then roll up and down.
+
+
 
 All support appreciated,  my Coinigy ref link  https://www.coinigy.com/?r=7b1c65ae
 

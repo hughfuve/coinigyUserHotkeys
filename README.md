@@ -44,15 +44,20 @@ CTRL+  3 sets to half the available stock , then triples the sell price .. succe
 
 CTRL+  4 sets to half the available stock , then quads the sell price .. successive hits quad the sell price again and again.
 
+CTRL+  5 sets to half the available stock , then quins the sell price .. successive hits quad the sell price again and again.
+
 CTRL+  6 does a fib/golden ratio level sell, and sets to available stock/1.66 and then sets the sell price to price *1.66, successive hits raise the price by golden ratio *1.66
 
 CTRL+  7 sets to available stock/2 then sets the sell price to price *1.75, why this value? I dont know just testing...
+
+CTRL+  e sets to r[E}set available stock then sets the sell price to price * available stock (allows hotkeys to set to sell all)
+
 
 ESC: Can close the feedback dialogs, and allow you to enter another value. (works better on poloniex direct)
 
 Enter: can allow you to set the order, this means you can do all your buying and selling from the keyboard. (works better on poloniex direct)
 
-IF MOUSEROLLER mods included.
+MOUSEROLLER mods included, but can be isolated.
 Mouseroller Up increases and decreases digits in the buy and sell fields. Click on the particular digit to select the precision, then roll up and down.
 
 
